@@ -1,0 +1,127 @@
+IPv4 Addressing Notes
+
+Internet Protocol
+It is a set of technical rules that defines how computers communicate over a network.
+
+IPv4
+It is the first version of Internet Protocol to be widely used and accounts for Internet traffic.
+
+Address Size: 32 bits
+
+Address Format: Dotted Decimal Notation: 192.149.252.76
+
+Number of Addresses: 232 = 4,294,967,296 Approximately
+
+IPv4 header has 20 bytes
+
+IPv4 header has many fields (13 fields)
+
+It is subdivided into classes <A-E>.
+
+The address uses a subnet mask.
+
+IPv4 has a lack of security.
+
+IPv4:
+Source and destination addresses are 32 bits (4 bytes) in length.
+
+IPsec support is optional
+
+Identification of packet flow for QoS handling by routers is absent within the IPv4 header.
+
+Fragmentation is performed by both routers and the sending host.
+
+The header includes a checksum.
+
+The header includes options.
+
+Address Resolution Protocol (ARP) uses broadcast ARP request frames to resolve an IPv4 address to a link-layer address.
+
+Internet Group Management Protocol (IGMP) is used to manage local subnet group membership.
+
+ICMP router discovery is used to determine the IPv4 address of the best default gateway and is optional.
+
+Broadcast addresses are used to send traffic to all nodes on a subnet.
+
+Must be configured either manually or through DHCP.
+
+Uses host address resource records in the Domain Name System to map host names to IPv4 addresses.
+
+Uses pointer resource records in the INADDR, ARPA DNS domain to map IPv4 addresses to host names.
+
+Must support a 576 byte packet size (possibly fragmented).
+
+Classes and Subnetting
+There are currently five different field length pattern in use, each defining a class of address.
+
+An IP address is 32 bit long. One portion of the address indicates a network (Net ID) and the other portion indicates the host (or router) on the network (i.e., Host ID).
+
+To reach a host on the Internet, we must first reach the network, using the first portion of the address (Net ID). Then, we must reach the host itself, using the 2nd portion (Host ID).
+
+The further division a network into smaller networks called subnetworks.
+
+For Class A: First bit of Net ID should be 0 like in the following pattern
+
+01111011 . 10001111 . 1111100 . 11001111
+
+For Class B: First 2 bits of Net ID should be 1 and 0 respective, as in below
+
+pattern 10011101 . 10001111 . 11111100 . 11001111
+
+For Class C: First 3 bits Net ID should be 1, 1 and 0 respectively, as follows
+
+11011101 . 10001111 . 11111100 . 11001111
+
+For Class D: First 4 bits should be 1110 respectively, as in pattern
+
+11101011 . 10001111 . 11111100 . 11001111
+
+For Class E: First 4 bits should be 1111 respectively, like
+
+11110101 . 10001111 . 11111100 . 11001111
+
+Class Ranges of Internet Address in Dotted Decimal Format
+
+Three Levels of Hierarchy: Adding subnetworks creates an intermediate level of hierarchy in the IP addressing system. Now, we have three levels: net ID; subnet ID and host ID. e.g.,
+
+Masking
+Masking is a process that extracts the address of the physical network from an IP address. Masking can be done whether we have subnetting or not. If we have not subnetted the network, masking extracts the network address form an IP address. If we have subnetted, masking extracts the subnetwork address form an IP address. 
+
+Masks without Subnetting: To be compatible, routers use a mask even, if there is no subnetting.
+
+Masks with Subnetting: When there is subnetting, the masks can vary
+
+Masks for Unsubnetted Networks
+
+Masks for Subnetted Networks
+
+Types of Masking
+There are two types of masking as given below
+
+Boundary Level Masking: If the masking is at the boundary level (the mask numbers are either 255 or 0), finding the subnetwork address is very easy. Follow these 2 rules
+
+The bytes in IP address that corresponds to 255 in the mask will be repeated in the subnetwork address.
+
+The bytes in IP address that corresponds to 0 in the mask will change to 0 in the subnetwork address.
+
+Non-boundary Level Masking: If the masking is not at the boundary level (the mask numbers are not just 255 or 0), finding subnetwork address involves using the bit-wise AND operator, follow these 3 rules
+
+The bytes in IP address that corresponds to 255 in the mask will be repeated in the subnetwork address.
+
+The bytes in the IP address that correspond to 0 in the mask will be changed to 0 in the subnetwork address.
+
+For other bytes, use the bit-wise AND operator
+
+As we can see, 3 bytes are ease {, to determine. However, the 4th bytes needs the bit-wise AND operation.
+
+Classless Addressing Scheme:
+
+No classes for the division of IP addresses
+
+Notation: x.y.z.w/n,  where n denotes the mask value inside the given network.
+
+No of host id= 232-n
+
+Rules: 
+1. Addresses in blocks are continuous.
+2. The first address of a block should be exactly divisible by no of addresses in a block.
